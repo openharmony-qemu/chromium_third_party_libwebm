@@ -1,7 +1,7 @@
 [
     {
         "Name": "chromium_third_party_libwebm",                   # 上游开源软件名全称
-        "License":"GPL-3.0+" ,"GPL-2.0-with-bison-exception","Khronos License"        # 上游开源软件中包含的许可证信息
+        "License":       # 上游开源软件中包含的许可证信息
         "License File":"LICENSE.TXT"     # 许可证所在文件路径
         "Version Number": "e4fbea0c9751ae8aa86629b197a28d8276a2b0da",
         "Upstream URL": "https://chromium.googlesource.com/webm/libwebm.git@e4fbea0c9751ae8aa86629b197a28d8276a2b0da",   # 上游软件包发布地址
