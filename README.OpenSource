@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "libwebm",
+        "License": "BSD-3-Clause",
+        "License File":"LICENSE.TXT",
+        "Version Number": "e4fbea0c9751ae8aa86629b197a28d8276a2b0da",
+        "Owner": "huangjiewen2@huawei.com",
+        "Upstream URL": "https://chromium.googlesource.com/webm/libwebm.git@e4fbea0c9751ae8aa86629b197a28d8276a2b0da",
+        "Description": "第三方软件vulkan-deps/glslang，进行着色器文件编译"
+    }
+]
