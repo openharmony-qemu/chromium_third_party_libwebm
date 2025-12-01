@@ -5014,7 +5014,7 @@ bool PrimaryChromaticity::Parse(IMkvReader* reader, long long read_pos,
     return false;
 
   if (!*chromaticity)
-    *chromaticity = new PrimaryChromaticity();
+    *chromaticity = new (std::nothrow) PrimaryChromaticity();
 
   if (!*chromaticity)
     return false;
@@ -5042,8 +5042,9 @@ bool MasteringMetadata::Parse(IMkvReader* reader, long long mm_start,
   if (!reader || *mm)
     return false;
 
-  std::unique_ptr<MasteringMetadata> mm_ptr(new MasteringMetadata());
-  if (!mm_ptr.get())
+  std::unique_ptr<MasteringMetadata> mm_ptr(new (std::nothrow)
+                                                MasteringMetadata());
+  if (!mm_ptr)
     return false;
 
   const long long mm_end = mm_start + mm_size;
@@ -5131,8 +5132,8 @@ bool Colour::Parse(IMkvReader* reader, long long colour_start,
   if (!reader || *colour)
     return false;
 
-  std::unique_ptr<Colour> colour_ptr(new Colour());
-  if (!colour_ptr.get())
+  std::unique_ptr<Colour> colour_ptr(new (std::nothrow) Colour());
+  if (!colour_ptr)
     return false;
 
   const long long colour_end = colour_start + colour_size;
@@ -5229,8 +5230,8 @@ bool Projection::Parse(IMkvReader* reader, long long start, long long size,
   if (!reader || *projection)
     return false;
 
-  std::unique_ptr<Projection> projection_ptr(new Projection());
-  if (!projection_ptr.get())
+  std::unique_ptr<Projection> projection_ptr(new (std::nothrow) Projection());
+  if (!projection_ptr)
     return false;
 
   const long long end = start + size;
@@ -7890,8 +7891,10 @@ long Block::Parse(const Cluster* pCluster) {
     if (frame_size <= 0)
       return E_FILE_FORMAT_INVALID;
 
+#if LLONG_MAX > LONG_MAX
     if (frame_size > LONG_MAX)
       return E_FILE_FORMAT_INVALID;
+#endif
 
     if ((pos + len) > stop)
       return E_FILE_FORMAT_INVALID;
@@ -7957,8 +7960,10 @@ long Block::Parse(const Cluster* pCluster) {
       if (frame_size <= 0)
         return E_FILE_FORMAT_INVALID;
 
+#if LLONG_MAX > LONG_MAX
       if (frame_size > LONG_MAX)
         return E_FILE_FORMAT_INVALID;
+#endif
 
       curr.len = static_cast<long>(frame_size);
       // Check if size + curr.len could overflow.
